@@ -1,0 +1,84 @@
+.header {
+  padding: 24px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.header_theme_dark {
+  background-color: transparent;
+}
+
+.header_theme_light {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header__logo {
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 4px;
+  opacity: 0.8;
+}
+
+.header__link_active {
+  opacity: 1;
+  border-bottom: 2px solid currentColor;
+}
+
+.header__login-btn {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  border-radius: 100px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__logout-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header__nav {
+    gap: 16px;
+  }
+
+  .header__username {
+    display: none;
+  }
+}
