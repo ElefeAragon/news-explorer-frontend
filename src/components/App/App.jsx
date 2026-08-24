@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header.jsx";
+import Main from "../Main/Main.jsx";
 import "./App.css";
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<p>Página principal (aquí irá Main)</p>} />
+        <Route path="/" element={<Main />} />
         <Route
           path="/saved-news"
           element={<p>Artículos guardados (aquí irá SavedNews)</p>}
