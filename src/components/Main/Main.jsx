@@ -1,4 +1,6 @@
+import { useState } from "react";
 import NewsCardList from "../NewsCardList/NewsCardList.jsx";
+import About from "../About/About.jsx";
 import "./Main.css";
 
 const placeholderArticles = [
@@ -29,6 +31,17 @@ const placeholderArticles = [
 ];
 
 function Main() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+
+  function handleSearchSubmit(evt) {
+    evt.preventDefault();
+    if (searchQuery.trim() === "") return;
+    // por ahora solo simulamos con los datos de prueba;
+    // cuando conectemos la News API real, aquí va el fetch de verdad
+    setHasSearched(true);
+  }
+
   return (
     <main className="main">
       <section className="main__hero">
@@ -38,11 +51,13 @@ function Main() {
           tu cuenta personal.
         </p>
 
-        <form className="main__search-form">
+        <form className="main__search-form" onSubmit={handleSearchSubmit}>
           <input
             type="text"
             className="main__search-input"
             placeholder="Introduce un tema"
+            value={searchQuery}
+            onChange={(evt) => setSearchQuery(evt.target.value)}
           />
           <button type="submit" className="main__search-btn">
             Buscar
@@ -50,10 +65,14 @@ function Main() {
         </form>
       </section>
 
-      <section className="main__results">
-        <h2 className="main__results-title">Resultados de la búsqueda</h2>
-        <NewsCardList articles={placeholderArticles} />
-      </section>
+      {hasSearched && (
+        <section className="main__results">
+          <h2 className="main__results-title">Resultados de la búsqueda</h2>
+          <NewsCardList articles={placeholderArticles} isSaved={false} />
+        </section>
+      )}
+
+      <About />
     </main>
   );
 }
