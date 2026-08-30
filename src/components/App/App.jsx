@@ -55,7 +55,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
         <Route
           path="/saved-news"
           element={<SavedNews userName={userName} />}

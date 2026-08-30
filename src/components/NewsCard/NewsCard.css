@@ -1,13 +1,12 @@
 .news-card {
   list-style: none;
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
 }
-
 .news-card__image-container {
   position: relative;
 }
@@ -30,10 +29,13 @@
   font-weight: 600;
 }
 
-.news-card__bookmark-btn {
+.news-card__bookmark-wrapper {
   position: absolute;
   top: 12px;
   right: 12px;
+}
+
+.news-card__bookmark-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -48,6 +50,32 @@
 .news-card__bookmark-btn_active {
   background-color: #2f71e5;
   background-image: url("../../images/bookmark-active-icon.svg");
+}
+
+.news-card__bookmark-btn_disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.news-card__tooltip {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  z-index: 5;
+}
+
+.news-card__bookmark-wrapper:hover .news-card__tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 .news-card__info {

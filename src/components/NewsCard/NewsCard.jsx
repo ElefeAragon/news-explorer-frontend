@@ -1,6 +1,13 @@
 import "./NewsCard.css";
 
-function NewsCard({ article, isSaved, keyword, onSaveClick, onDeleteClick }) {
+function NewsCard({
+  article,
+  isSaved,
+  keyword,
+  isLoggedIn,
+  onSaveClick,
+  onDeleteClick,
+}) {
   const { urlToImage, publishedAt, title, description, source } = article;
 
   function formatDate(dateString) {
@@ -27,14 +34,22 @@ function NewsCard({ article, isSaved, keyword, onSaveClick, onDeleteClick }) {
 
         {keyword && <span className="news-card__keyword">{keyword}</span>}
 
-        <button
-          type="button"
-          className={`news-card__bookmark-btn ${
-            isSaved ? "news-card__bookmark-btn_active" : ""
-          }`}
-          onClick={handleBookmarkClick}
-          aria-label={isSaved ? "Eliminar de guardados" : "Guardar artículo"}
-        />
+        <div className="news-card__bookmark-wrapper">
+          <button
+            type="button"
+            className={`news-card__bookmark-btn ${
+              isSaved ? "news-card__bookmark-btn_active" : ""
+            } ${!isLoggedIn ? "news-card__bookmark-btn_disabled" : ""}`}
+            onClick={isLoggedIn ? handleBookmarkClick : undefined}
+            disabled={!isLoggedIn}
+            aria-label={isSaved ? "Eliminar de guardados" : "Guardar artículo"}
+          />
+          {!isLoggedIn && (
+            <span className="news-card__tooltip">
+              Inicia sesión para guardar artículos
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="news-card__info">
