@@ -1,71 +1,22 @@
-import { useState, useEffect } from "react";
 import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 import About from "../About/About.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
-import { searchNews } from "../../utils/NewsExplorerApi.js";
 import emptyResultsIcon from "../../images/empty-results-icon.svg";
 import "./Main.css";
 
-const CARDS_PER_PAGE = 3;
-
-function Main({ isLoggedIn }) {
-  const [searchQuery, setSearchQuery] = useState(
-    () => localStorage.getItem("newsExplorerQuery") || "",
-  );
-  const [hasSearched, setHasSearched] = useState(
-    () => !!localStorage.getItem("newsExplorerArticles"),
-  );
-  const [articles, setArticles] = useState(() => {
-    const saved = localStorage.getItem("newsExplorerArticles");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [validationError, setValidationError] = useState("");
-  const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
-
-  useEffect(() => {
-    if (articles.length > 0) {
-      localStorage.setItem("newsExplorerArticles", JSON.stringify(articles));
-      localStorage.setItem("newsExplorerQuery", searchQuery);
-    }
-  }, [articles, searchQuery]);
-
-  function handleSearchSubmit(evt) {
-    evt.preventDefault();
-
-    if (searchQuery.trim() === "") {
-      setValidationError("Por favor, introduzca una palabra clave");
-      return;
-    }
-
-    setValidationError("");
-    setIsLoading(true);
-    setHasSearched(true);
-    setHasError(false);
-    setVisibleCount(CARDS_PER_PAGE);
-
-    searchNews(searchQuery)
-      .then((data) => {
-        setArticles(data.articles);
-      })
-      .catch((err) => {
-        console.error("Error en la búsqueda:", err);
-        setHasError(true);
-        setArticles([]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
-  function handleShowMore() {
-    setVisibleCount((prev) => prev + CARDS_PER_PAGE);
-  }
-
-  const visibleArticles = articles.slice(0, visibleCount);
-  const hasMoreArticles = visibleCount < articles.length;
-
+function Main({
+  isLoggedIn,
+  searchQuery,
+  onSearchQueryChange,
+  onSearchSubmit,
+  validationError,
+  hasSearched,
+  isLoading,
+  hasError,
+  visibleArticles,
+  hasMoreArticles,
+  onShowMore,
+}) {
   return (
     <main className="main">
       <section className="main__hero">
@@ -75,13 +26,13 @@ function Main({ isLoggedIn }) {
           cuenta personal.
         </p>
 
-        <form className="main__search-form" onSubmit={handleSearchSubmit}>
+        <form className="main__search-form" onSubmit={onSearchSubmit}>
           <input
             type="text"
             className="main__search-input"
             placeholder="Introduce un tema"
             value={searchQuery}
-            onChange={(evt) => setSearchQuery(evt.target.value)}
+            onChange={onSearchQueryChange}
           />
           <button type="submit" className="main__search-btn">
             Buscar
@@ -95,7 +46,7 @@ function Main({ isLoggedIn }) {
 
       {hasSearched && (
         <section className="main__results">
-          {!isLoading && !hasError && articles.length > 0 && (
+          {!isLoading && !hasError && visibleArticles.length > 0 && (
             <h2 className="main__results-title">Resultados de la búsqueda</h2>
           )}
 
@@ -109,7 +60,7 @@ function Main({ isLoggedIn }) {
             </p>
           )}
 
-          {!isLoading && !hasError && articles.length === 0 && (
+          {!isLoading && !hasError && visibleArticles.length === 0 && (
             <div className="main__empty">
               <img src={emptyResultsIcon} alt="" className="main__empty-icon" />
               <h3 className="main__empty-title">No se encontró nada</h3>
@@ -120,7 +71,7 @@ function Main({ isLoggedIn }) {
             </div>
           )}
 
-          {!isLoading && !hasError && articles.length > 0 && (
+          {!isLoading && !hasError && visibleArticles.length > 0 && (
             <>
               <NewsCardList
                 articles={visibleArticles}
@@ -132,7 +83,7 @@ function Main({ isLoggedIn }) {
                 <button
                   type="button"
                   className="main__show-more-btn"
-                  onClick={handleShowMore}
+                  onClick={onShowMore}
                 >
                   Ver más
                 </button>

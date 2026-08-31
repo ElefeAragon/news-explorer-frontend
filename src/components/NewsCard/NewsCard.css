@@ -45,6 +45,11 @@
   background-image: url("../../images/bookmark-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
+  transition: transform 0.15s ease;
+}
+
+.news-card__bookmark-btn:hover {
+  transform: scale(1.1);
 }
 
 .news-card__bookmark-btn_active {

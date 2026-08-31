@@ -10,9 +10,9 @@ function NewsCardList({
 }) {
   return (
     <ul className="news-card-list">
-      {articles.map((article, index) => (
+      {articles.map((article) => (
         <NewsCard
-          key={index}
+          key={article.url}
           article={article}
           isSaved={isSaved}
           keyword={article.keyword}

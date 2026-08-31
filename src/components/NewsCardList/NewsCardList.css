@@ -1,6 +1,6 @@
 .news-card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 32px;
   list-style: none;
   padding: 0;
@@ -16,7 +16,6 @@
 
 @media (max-width: 767px) {
   .news-card-list {
-    grid-template-columns: 1fr;
     padding: 0 20px;
   }
 }
