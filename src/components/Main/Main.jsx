@@ -16,6 +16,8 @@ function Main({
   visibleArticles,
   hasMoreArticles,
   onShowMore,
+  onSaveClick,
+  onDeleteClick,
 }) {
   return (
     <main className="main">
@@ -75,8 +77,9 @@ function Main({
             <>
               <NewsCardList
                 articles={visibleArticles}
-                isSaved={false}
                 isLoggedIn={isLoggedIn}
+                onSaveClick={onSaveClick}
+                onDeleteClick={onDeleteClick}
               />
 
               {hasMoreArticles && (

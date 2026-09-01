@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../utils/AuthForm.css";
 
-function RegisterForm({ onRegister, onSwitchToLogin }) {
+function RegisterForm({ onRegister, onSwitchToLogin, errorMessage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -71,6 +71,12 @@ function RegisterForm({ onRegister, onSwitchToLogin }) {
           required
         />
       </label>
+
+      {errorMessage && (
+        <p className="auth-form__error auth-form__error_general">
+          {errorMessage}
+        </p>
+      )}
 
       <button
         type="submit"

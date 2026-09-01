@@ -123,3 +123,22 @@
 .news-card__bookmark-btn_active:hover {
   background-image: url("../../images/bookmark-active-icon.svg");
 }
+
+.news-card__tooltip_delete {
+  top: 6px;
+  right: 44px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.news-card__bookmark-btn_delete {
+  background-color: #ffffff;
+  background-image: url("../../images/trash-icon.svg");
+  opacity: 0.6;
+}
+
+.news-card__bookmark-btn_delete:hover {
+  opacity: 1;
+  background-image: url("../../images/trash-active-icon.svg");
+}
