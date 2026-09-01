@@ -78,6 +78,7 @@ function Main({
               <NewsCardList
                 articles={visibleArticles}
                 isLoggedIn={isLoggedIn}
+                isSavedPage={false}
                 onSaveClick={onSaveClick}
                 onDeleteClick={onDeleteClick}
               />

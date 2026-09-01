@@ -1,7 +1,13 @@
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import "./NewsCardList.css";
 
-function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick }) {
+function NewsCardList({
+  articles,
+  isLoggedIn,
+  isSavedPage,
+  onSaveClick,
+  onDeleteClick,
+}) {
   return (
     <ul className="news-card-list">
       {articles.map((article) => (
@@ -10,6 +16,7 @@ function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick }) {
           article={article}
           keyword={article.keyword}
           isLoggedIn={isLoggedIn}
+          isSavedPage={isSavedPage}
           onSaveClick={onSaveClick}
           onDeleteClick={onDeleteClick}
         />

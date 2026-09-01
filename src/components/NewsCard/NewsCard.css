@@ -135,10 +135,8 @@
 .news-card__bookmark-btn_delete {
   background-color: #ffffff;
   background-image: url("../../images/trash-icon.svg");
-  opacity: 0.6;
 }
 
 .news-card__bookmark-btn_delete:hover {
-  opacity: 1;
   background-image: url("../../images/trash-active-icon.svg");
 }

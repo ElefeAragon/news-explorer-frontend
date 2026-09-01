@@ -9,6 +9,7 @@ function SavedNews({ userName, articles, isLoggedIn, onDeleteClick }) {
       <NewsCardList
         articles={articles}
         isLoggedIn={isLoggedIn}
+        isSavedPage={true}
         onDeleteClick={onDeleteClick}
       />
     </main>
