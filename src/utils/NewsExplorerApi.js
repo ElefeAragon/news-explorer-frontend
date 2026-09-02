@@ -1,4 +1,4 @@
-const BASE_URL = "https://newsapi.org/v2";
+const BASE_URL = "https://nomoreparties.co/news/v2";
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 function getDateDaysAgo(days) {
@@ -23,7 +23,7 @@ export function searchNews(query) {
   const to = getToday();
 
   const url = `${BASE_URL}/everything?q=${encodeURIComponent(
-    query
+    query,
   )}&from=${from}&to=${to}&pageSize=100&apiKey=${API_KEY}`;
 
   return fetch(url).then(checkResponse);
