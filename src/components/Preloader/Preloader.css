@@ -1,0 +1,29 @@
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.preloader__circle {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border: 3px solid #e5e5e5;
+  border-top-color: #a1a1a1;
+  border-radius: 50%;
+  animation: spin 0.75s infinite linear;
+}
+
+.preloader__text {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #a1a1a1;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

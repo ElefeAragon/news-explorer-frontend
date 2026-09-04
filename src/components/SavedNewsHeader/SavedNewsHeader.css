@@ -1,0 +1,33 @@
+.saved-header {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.saved-header__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #8b8b8b;
+  margin: 0 0 12px;
+}
+
+.saved-header__title {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.saved-header__keywords {
+  font-size: 14px;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .saved-header {
+    padding: 24px 20px;
+  }
+
+  .saved-header__title {
+    font-size: 24px;
+  }
+}
