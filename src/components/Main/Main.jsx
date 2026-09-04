@@ -35,6 +35,7 @@ function Main({
             placeholder="Introduce un tema"
             value={searchQuery}
             onChange={onSearchQueryChange}
+            required
           />
           <button type="submit" className="main__search-btn">
             Buscar
